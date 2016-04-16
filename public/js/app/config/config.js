@@ -68,5 +68,8 @@ require.config({
         i18nDirectory: "templates/i18n/",
 
         compileOptions: {}        // options object which is passed to Handlebars compiler
+    },
+    api : {
+        stocks: 'http://localhost:4000/api/stocks'
     }
 });

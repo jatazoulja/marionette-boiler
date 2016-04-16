@@ -3,7 +3,7 @@
     // App Environment
     // ---------------
     //  Tip: Set to true to turn on "production" mode
-    var production = true,
+    var production = false,
     //BoilerplateMVC Helper Methods
         boilerplateMVC = {
             loadCSS: function(url, callback) {

@@ -1,4 +1,4 @@
-define( ['App', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!templates/welcome'],
+define( ['App', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!templates/login'],
     function(App, Backbone, Marionette, $, Model, template) {
         //ItemView provides some default rendering logic
         return Backbone.Marionette.ItemView.extend( {
@@ -13,3 +13,5 @@ define( ['App', 'backbone', 'marionette', 'jquery', 'models/Model', 'hbs!templat
             }
         });
     });
+
+

@@ -23,9 +23,24 @@ app.get('/', function(req, res){
         }
     );
 });
+app.get('/api/stocks/', function(req, res){
+        fs.readFile('public/api/stocks.json', function(err, data){
+
+            if (!err) {
+                console.log("loading");
+                // make the buffer into a string
+                var source = data.toString();
+                // call the render function
+                return res.send(renderToString(source, {}));
+            } else {
+                // handle file read error
+            }
+        }
+    );
+});
 app.use(express.static('public'));
 
-app.listen(3000);
+app.listen(4000);
 
 
 // get your data into a variable
