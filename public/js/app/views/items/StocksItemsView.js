@@ -9,9 +9,7 @@ define( ['App', 'backbone', 'marionette', 'jquery',
             className: "panel panel-default",
             model: new Model(),
 
-            events: {
 
-            }
         });
 
     });
