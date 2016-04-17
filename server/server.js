@@ -3,6 +3,7 @@
 var express = require('express'),
     app = express(),
     fs = require('fs'),
+    request = require('request'),
     handlebars = require('handlebars'),
     http = require("http"),
     port = (process.env.PORT || 8001);
@@ -65,18 +66,11 @@ app.get('/api/hdata/:code', function(req, res){
     var code = req.params.code || "";
     if(code!=="") {
         console.log("http://api.manilainvestor.com/v1/stocks/hdata/" + code);
-        var request = http.get("http://api.manilainvestor.com/v1/stocks/hdata/" + code, function (response) {
-            var buffer = "",
-                data,
-                route;
-
-            response.on("data", function (chunk) {
-                res.send(buffer+=chunk);
-            });
-
-            response.on("end", function (err) {
-            });
-        });
+        request("http://api.manilainvestor.com/v1/stocks/hdata/" + code, function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                res.send(body) // Print the google web page.
+            }
+        })
     }
 });
 app.use(express.static('public'));

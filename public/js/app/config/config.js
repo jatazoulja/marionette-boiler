@@ -26,11 +26,10 @@ require.config({
     },
     // Sets the configuration for your third party scripts that are not AMD compatible
     shim:{
-        // Twitter Bootstrap jQuery plugins
-        "canvasjs": {
-            "deps":["jquery"],
-            exports: 'CanvasJS'
+        "canvasjs":{
+            "exports": "CanvasJS"
         },
+
         "bootstrap":["jquery"],
         // jQueryUI
         "jqueryui":["jquery"],
