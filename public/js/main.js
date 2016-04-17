@@ -38,7 +38,7 @@
                 } else {
                     script.src = file;
                 }
-                d.getElementsByTagName("head")[0].appendChild(script);
+                d.getElementsByTagName("body")[0].appendChild(script);
             },
             loadFiles: function(production, obj, callback) {
                 var self = this;

@@ -1,6 +1,6 @@
 define( ['App', 'backbone', 'marionette', 'jquery',
-        'models/StocksModel',
-        'hbs!templates/stocks/details', 'canvasjs'],
+        'models/stocksHdata',
+        'hbs!templates/stocks/candles', 'canvasjs'],
     function(App, Backbone, Marionette, $, Model, template, CanvasJS) {
         //ItemView provides some default rendering logic
         return Marionette.CompositeView.extend({
@@ -18,7 +18,6 @@ define( ['App', 'backbone', 'marionette', 'jquery',
                         id: e.toJSON().id,
                         success: function(resp) {
                             console.log(resp);
-
                         }
                     });
 
@@ -26,6 +25,7 @@ define( ['App', 'backbone', 'marionette', 'jquery',
             },
             render: function() {
                 this.constructor.__super__.render.apply(this, arguments);
+                console.log("StocksCandleStickView");
                 console.log(this.model.toJSON());
 
             }

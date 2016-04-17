@@ -10,7 +10,6 @@ var express = require('express'),
 
 app.get('/', function(req, res){
         fs.readFile('public/index.html', function(err, data){
-
             if (!err) {
                 console.log("loading");
                 // make the buffer into a string
@@ -59,20 +58,24 @@ app.get('/api/stocks/:code', function(req, res){
             response.on("end", function (err) {
             });
         });
-    } else {
-        fs.readFile('public/api/stocks.json', function(err, data){
+    }
+});
+app.get('/api/hdata/:code', function(req, res){
+    console.log(req.params.code);
+    var code = req.params.code || "";
+    if(code!=="") {
+        console.log("http://api.manilainvestor.com/v1/stocks/hdata/" + code);
+        var request = http.get("http://api.manilainvestor.com/v1/stocks/hdata/" + code, function (response) {
+            var buffer = "",
+                data,
+                route;
 
-            if (!err) {
-                console.log("loading");
-                // make the buffer into a string
-                var source = data.toString();
-                // call the render function
-                return res.send(renderToString(source, {}));
-            } else {
-                // handle file read error
+            response.on("data", function (chunk) {
+                res.send(buffer+=chunk);
+            });
 
-
-            }
+            response.on("end", function (err) {
+            });
         });
     }
 });

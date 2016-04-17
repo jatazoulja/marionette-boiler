@@ -5,6 +5,7 @@ require.config({
     paths:{
         // Core Libraries
         "jquery":"../libs/jquery",
+        "canvasjs":"../libs/jquery.canvasjs.min",
         "jqueryui":"../libs/jqueryui",
         "jquerymobile":"../libs/jquery.mobile",
         "underscore":"../libs/lodash",
@@ -26,6 +27,10 @@ require.config({
     // Sets the configuration for your third party scripts that are not AMD compatible
     shim:{
         // Twitter Bootstrap jQuery plugins
+        "canvasjs": {
+            "deps":["jquery"],
+            exports: 'CanvasJS'
+        },
         "bootstrap":["jquery"],
         // jQueryUI
         "jqueryui":["jquery"],
@@ -39,6 +44,7 @@ require.config({
             // Exports the global window.Backbone object
             "exports":"Backbone"
         },
+
         //Marionette
         "marionette":{
             "deps":["underscore", "backbone", "jquery"],
@@ -70,6 +76,7 @@ require.config({
         compileOptions: {}        // options object which is passed to Handlebars compiler
     },
     api : {
-        stocks: 'http://localhost:4000/api/stocks'
+        stocks: 'http://localhost:4000/api/stocks',
+        hdata: 'http://localhost:4000/api/hdata/'
     }
 });
