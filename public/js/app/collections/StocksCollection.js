@@ -20,6 +20,7 @@ define(["jquery","backbone","models/StocksModel"],
                         var listSource = new Array();
                         var _this = this;
                         _.each(response.stock, function(element, index, list) {
+                            element.id = element.symbol;
                             listSource.push(new _this.model(element));
 
                         });

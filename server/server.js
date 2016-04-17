@@ -5,6 +5,7 @@ var express = require('express'),
     fs = require('fs'),
     handlebars = require('handlebars'),
     http = require("http"),
+    Client = require('node-rest-client'),
     port = (process.env.PORT || 8001);
     // fooJson = require('path/to/foo.json');;
 
@@ -23,7 +24,18 @@ app.get('/', function(req, res){
         }
     );
 });
-app.get('/api/stocks/', function(req, res){
+app.get('/api/stocks/:code', function(req, res){
+    var code = req.params.code || "";
+    if(code!=="") {
+        var client = new Client();
+
+        client.get("http://api.manilainvestor.com/v1/stocks/" + code, function (data, response) {
+            // parsed response body as js object
+            console.log(data);
+            // raw response
+            console.log(response);
+        });
+    } else {
         fs.readFile('public/api/stocks.json', function(err, data){
 
             if (!err) {
@@ -34,9 +46,11 @@ app.get('/api/stocks/', function(req, res){
                 return res.send(renderToString(source, {}));
             } else {
                 // handle file read error
+
+
             }
-        }
-    );
+        });
+    }
 });
 app.use(express.static('public'));
 

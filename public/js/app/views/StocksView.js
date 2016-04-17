@@ -7,18 +7,8 @@ define( ['App', 'backbone', 'marionette', 'jquery',
             template: template,
             tagName: "div",
             className: "panel panel-default",
-            model: new Model(),
-            events: {
-                "click": "getId"
-            },
+            model: new Model()
 
-            getId: function(e) {
-                console.log(e);
-                var id = $(e.target).data().id;
-                console.log(id);
-
-                console.log(this.model.get());
-            }
         });
 
     });

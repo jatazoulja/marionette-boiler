@@ -19,6 +19,15 @@ define( ['App',
         return Backbone.Marionette.CollectionView.extend({
             collection: new collection(),
             childView: childView,
+            events: {
+                "click ": 'getStocksID'
+            },
+            getStocksID: function(e){
+                var id = $(e.target).data().id;
+                console.log(this.collection.get(id));
+
+                App.vent.trigger('stockModel:getStocks', this.collection.get(id));
+            }
 
         });
     });

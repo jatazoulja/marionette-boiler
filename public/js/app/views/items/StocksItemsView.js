@@ -8,6 +8,13 @@ define( ['App', 'backbone', 'marionette', 'jquery',
             tagName: "div",
             className: "panel panel-default",
             model: new Model(),
+            initialize: function() {
+                var _this = this;
+                App.vent.on('stockModel:getStocks', function(e, t){
+                    _this.model = e;
+                    _this.render();
+                });
+            }
 
 
         });
