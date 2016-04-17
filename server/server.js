@@ -5,7 +5,6 @@ var express = require('express'),
     fs = require('fs'),
     handlebars = require('handlebars'),
     http = require("http"),
-    Client = require('node-rest-client'),
     port = (process.env.PORT || 8001);
     // fooJson = require('path/to/foo.json');;
 
@@ -24,16 +23,41 @@ app.get('/', function(req, res){
         }
     );
 });
+app.get('/api/stocks/', function(req, res){
+    fs.readFile('public/api/stocks.json', function(err, data){
+
+        if (!err) {
+            console.log("loading");
+            // make the buffer into a string
+            var source = data.toString();
+            // call the render function
+            return res.send(renderToString(source, {}));
+        } else {
+            // handle file read error
+
+
+        }
+    });
+
+});
+
 app.get('/api/stocks/:code', function(req, res){
+    console.log(req.params.code);
     var code = req.params.code || "";
     if(code!=="") {
-        var client = new Client();
+        var request = http.get("http://api.manilainvestor.com/v1/stocks/" + code, function (response) {
+            // data is streamed in chunks from the server
+            // so we have to handle the "data" event
+            var buffer = "",
+                data,
+                route;
 
-        client.get("http://api.manilainvestor.com/v1/stocks/" + code, function (data, response) {
-            // parsed response body as js object
-            console.log(data);
-            // raw response
-            console.log(response);
+            response.on("data", function (chunk) {
+                res.send(chunk);
+            });
+
+            response.on("end", function (err) {
+            });
         });
     } else {
         fs.readFile('public/api/stocks.json', function(err, data){

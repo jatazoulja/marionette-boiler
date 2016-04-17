@@ -9,6 +9,7 @@ define(["jquery", "backbone"],
 
                 url: function() {
                     var id = this.id || "";
+                    console.log(id);
                     return this.urlRoot + '/' + id;
                 },
                 defaults: {
@@ -21,10 +22,13 @@ define(["jquery", "backbone"],
                     symbol: "2GO",
                     volume : 69000
                 },
-
                 // Get's called automatically by Backbone when the set and/or save methods are called (Add your own logic)
-                validate: function(attrs) {
-
+                fetch: function(options) {
+                    this.id = options.id || "";
+                    this.constructor.__super__.fetch.apply(this, arguments);
+                },
+                parse: function(item) {
+                    return (this.id!=="" || this.id!== null) ? item[0] : item;
                 }
 
         });
