@@ -3,7 +3,7 @@ define( ['App', 'backbone', 'marionette', 'jquery', 'models/StocksModel', 'hbs!t
     function(App, Backbone, Marionette, $, Model, template, StocksItemsView, StocksCandleStickView) {
         //ItemView provides some default rendering logic
         return Marionette.LayoutView.extend({
-            className: 'row',
+            className: '',
             template: template,
             regions: {
                 stocks: '#stockDetails',

@@ -15,7 +15,7 @@ define( ['App', 'backbone', 'marionette', 'jquery',
             },
             initialize: function() {
                 var _this = this;
-                App.vent.off('stockModel:getStocks').on('stockModel:getStocks', function(e, t){
+                App.vent.on('stockModel:getStocks', function(e, t){
                     $.ajax({
                         url: requirejs.s.contexts._.config.api.hdata + e.toJSON().id,
                         success: function(resp) {

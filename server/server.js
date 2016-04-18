@@ -73,6 +73,15 @@ app.get('/api/hdata/:code', function(req, res){
         })
     }
 });
+app.get('/api/ticker/', function(req, res){
+
+        console.log("http://api.manilainvestor.com/v1/stocks/ticker/");
+        request("http://api.manilainvestor.com/v1/stocks/ticker/", function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                res.send(body) // Print the google web page.
+            }
+        })
+});
 app.use(express.static('public'));
 
 app.listen(4000);

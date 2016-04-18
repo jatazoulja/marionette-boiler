@@ -76,6 +76,7 @@ require.config({
     },
     api : {
         stocks: 'http://localhost:4000/api/stocks',
-        hdata: 'http://localhost:4000/api/hdata/'
+        hdata: 'http://localhost:4000/api/hdata/',
+        ticker: 'http://localhost:4000/api/ticker',
     }
 });

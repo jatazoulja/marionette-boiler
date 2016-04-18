@@ -1,4 +1,4 @@
-define(['App', 'backbone', 'marionette', 'views/WelcomeView', 'views/HeaderView', "views/public/LoginView", "views/layouts/MainStocksLayout"],
+define(['App', 'backbone', 'marionette', 'views/WelcomeView', 'views/layouts/HeaderLayout', "views/public/LoginView", "views/layouts/MainStocksLayout"],
     function (App,
               Backbone,
               Marionette,
